@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1036284736}
   - component: {fileID: 1036284735}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: feet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   feet: {fileID: 1036284735}
-  jumpSpeed: 40
+  dash: 0
+  dashTime: 0
+  speedDash: 0
   shotRate: 0.5
   bullet: {fileID: 5725887293280122627, guid: f791ef39e4b897f4ba5627cfc189cf25, type: 3}
   firePoint: {fileID: 65375733}
+  jumpSpeed: 40
