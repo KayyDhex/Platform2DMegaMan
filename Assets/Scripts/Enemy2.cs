@@ -25,19 +25,29 @@ public class Enemy2 : MonoBehaviour
         if (distance <= range)
             Fire();
     }
+    private void Fire()
+    {
+        if (Time.time >= canFire)
+        {
+            GameObject bull = Instantiate(bullet, firePoint.transform.position, Quaternion.identity);
+            canFire = Time.time + shotRate;
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color(255f, 0f, 0f, 0.3f);
         Gizmos.DrawSphere(transform.position, range);
         Gizmos.DrawLine(transform.position, player.transform.position);
     }
-    private void Fire()
+    
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Time.time >= canFire)
+        if (collision.gameObject.CompareTag("Shot"))
         {
-            GameObject bull = Instantiate(bullet, firePoint.transform.position, Quaternion.identity);
-            Destroy(bull, 3);
-            canFire = Time.time + shotRate;
+            GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            AudioSource.PlayClipAtPoint(sfx_death, Camera.main.transform.position);
+            Destroy(explosion, 1f);
+            Destroy(gameObject);
         }
     }
 }
